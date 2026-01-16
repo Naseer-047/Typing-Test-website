@@ -1,4 +1,4 @@
-
+        alert("plese Select The difficulty level first")
         // Sample texts for different difficulty levels
         const sampleTexts = {
             easy: [
