@@ -1,0 +1,1071 @@
+<!-- NEW PORTFOLIO - ULTIMATE VERSION -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naseer Pasha | Full-Stack Developer & Innovator</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        accent: '#06b6d4',
+                        success: '#10b981',
+                        warning: '#f59e0b',
+                        'dark-bg': '#0a0a1a',
+                        'light-bg': '#f5f7fa',
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'space': ['Space Grotesk', 'sans-serif'],
+                        'mono': ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'shimmer': 'shimmer 3s infinite linear',
+                        'wave': 'wave 1.5s linear infinite',
+                        'orbit': 'orbit 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        glow: {
+                            '0%': { 'box-shadow': '0 0 20px rgba(99, 102, 241, 0.5)' },
+                            '100%': { 'box-shadow': '0 0 40px rgba(99, 102, 241, 0.8)' }
+                        },
+                        shimmer: {
+                            '0%': { 'background-position': '-200px 0' },
+                            '100%': { 'background-position': '200px 0' }
+                        },
+                        wave: {
+                            '0%': { transform: 'translateX(0)' },
+                            '100%': { transform: 'translateX(-50%)' }
+                        },
+                        orbit: {
+                            '0%': { transform: 'rotate(0deg) translateX(100px) rotate(0deg)' },
+                            '100%': { transform: 'rotate(360deg) translateX(100px) rotate(-360deg)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Combined Styles -->
+    <style>
+        /* Merge of both portfolios with enhancements */
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --dark-bg: #0a0a1a;
+            --light-bg: #f5f7fa;
+            --neon-purple: #b967ff;
+            --neon-blue: #00d4ff;
+            --neon-pink: #ff00ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--light-bg);
+            color: #1a202c;
+            overflow-x: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        body.dark {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f172a 100%);
+            color: #e2e8f0;
+        }
+
+        /* Advanced Texture Background with Particles */
+        .bg-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.05) 0%, transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 25%);
+            background-size: 400px 400px;
+            z-index: -2;
+            opacity: 0.5;
+            animation: textureMove 20s infinite linear;
+        }
+
+        .dark .bg-texture {
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(99, 102, 241, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.08) 0%, transparent 25%),
+                radial-gradient(circle at 50% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 25%);
+            opacity: 0.3;
+        }
+
+        @keyframes textureMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        /* Particles Background */
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Glass Morphism Cards - Enhanced */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.6);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* 3D Floating Cards */
+        .card-3d {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.5s;
+        }
+
+        .card-3d:hover {
+            transform: rotateY(10deg) rotateX(5deg) translateY(-10px);
+        }
+
+        /* Neuomorphic Elements */
+        .neu-card {
+            border-radius: 20px;
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            box-shadow: 
+                20px 20px 60px #d9d9d9,
+                -20px -20px 60px #ffffff;
+        }
+
+        .dark .neu-card {
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            box-shadow: 
+                20px 20px 60px #0a0e17,
+                -20px -20px 60px #141c2e;
+        }
+
+        /* Animated Gradient Border */
+        .gradient-border {
+            position: relative;
+            border-radius: 20px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 300% 300%;
+            animation: gradient 8s ease infinite;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 2px;
+            background: inherit;
+            border-radius: 18px;
+            z-index: -1;
+        }
+
+        /* Matrix Rain Effect */
+        .matrix-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.05;
+        }
+
+        /* Typewriter with Cursor */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 3px;
+            background-color: var(--primary);
+            animation: blink 1s infinite;
+            margin-left: 5px;
+            height: 1em;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Holographic Effect */
+        .holographic {
+            background: linear-gradient(
+                45deg,
+                rgba(99, 102, 241, 0.8),
+                rgba(139, 92, 246, 0.8),
+                rgba(6, 182, 212, 0.8)
+            );
+            background-size: 400% 400%;
+            animation: hologram 6s ease infinite;
+        }
+
+        @keyframes hologram {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Progress Bars with Animation */
+        .progress-ring {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            stroke-dasharray: 283;
+            stroke-dashoffset: 283;
+            transition: stroke-dashoffset 1.5s ease;
+            stroke-linecap: round;
+        }
+
+        /* Morphing Shapes */
+        .morph-shape {
+            animation: morph 8s ease-in-out infinite;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Stagger Animations */
+        .stagger-children > * {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: staggerShow 0.5s forwards;
+        }
+
+        @keyframes staggerShow {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+            height: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(99, 102, 241, 0.1);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, var(--primary), var(--secondary));
+            border-radius: 10px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .matrix-container {
+                display: none;
+            }
+            
+            .card-3d:hover {
+                transform: none;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #1e1b4b 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-family: 'Fira Code', monospace;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 2s ease infinite;
+        }
+
+        /* Grid Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Tilt Effect */
+        .tilt-effect {
+            transition: transform 0.2s;
+        }
+
+        /* Shine Effect */
+        .shine-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine-effect::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent 20%,
+                rgba(255, 255, 255, 0.3) 50%,
+                transparent 80%
+            );
+            transform: rotate(30deg);
+            animation: shine 3s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
+        }
+    </style>
+</head>
+<body class="font-inter">
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="relative w-32 h-32">
+            <div class="absolute inset-0 border-4 border-transparent border-t-primary border-r-secondary border-b-accent border-l-primary/50 rounded-full animate-spin"></div>
+            <div class="absolute inset-4 border-4 border-transparent border-t-secondary border-r-accent border-b-primary border-l-secondary/50 rounded-full animate-spin" style="animation-duration: 2s;"></div>
+            <div class="absolute inset-8 border-4 border-transparent border-t-accent border-r-primary border-b-secondary border-l-accent/50 rounded-full animate-spin" style="animation-duration: 3s;"></div>
+        </div>
+        <div class="loading-text mt-8">Initializing Portfolio v3.0...</div>
+        <div class="mt-4 text-gray-400 font-mono text-sm">Loading advanced features...</div>
+    </div>
+
+    <!-- Particles Background -->
+    <div id="particles-js"></div>
+    <div class="bg-texture"></div>
+    <div class="matrix-container" id="matrixRain"></div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+
+    <!-- Floating Elements -->
+    <div class="fixed top-20 left-10 w-4 h-4 bg-primary rounded-full animate-float" style="animation-delay: 0s;"></div>
+    <div class="fixed top-40 right-20 w-6 h-6 bg-secondary rounded-full animate-float" style="animation-delay: 1s;"></div>
+    <div class="fixed bottom-32 left-20 w-8 h-8 bg-accent rounded-full animate-float" style="animation-delay: 2s;"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 py-4 px-4 md:px-8 glass-card" id="navbar">
+        <div class="container mx-auto">
+            <div class="flex justify-between items-center">
+                <!-- Logo with Animation -->
+                <a href="#home" class="text-2xl font-bold font-space relative group">
+                    <span class="gradient-text">NP</span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-secondary group-hover:w-full transition-all duration-300"></span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <div class="flex space-x-6">
+                        <a href="#home" class="nav-item relative group px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-300">
+                            <span class="font-medium">Home</span>
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-4/5 transition-all duration-300"></span>
+                        </a>
+                        <a href="#about" class="nav-item relative group px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-300">
+                            <span class="font-medium">About</span>
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-secondary group-hover:w-4/5 transition-all duration-300"></span>
+                        </a>
+                        <a href="#skills" class="nav-item relative group px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-300">
+                            <span class="font-medium">Skills</span>
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-accent group-hover:w-4/5 transition-all duration-300"></span>
+                        </a>
+                        <a href="#projects" class="nav-item relative group px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-300">
+                            <span class="font-medium">Projects</span>
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-purple-500 group-hover:w-4/5 transition-all duration-300"></span>
+                        </a>
+                        <a href="#contact" class="nav-item relative group px-4 py-2 rounded-lg hover:bg-white/5 transition-all duration-300">
+                            <span class="font-medium">Contact</span>
+                            <span class="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-pink-500 group-hover:w-4/5 transition-all duration-300"></span>
+                        </a>
+                    </div>
+
+                    <!-- Theme Toggle -->
+                    <div class="theme-toggle glass-card px-4 py-2 rounded-full cursor-pointer" id="themeToggle">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-sun text-yellow-500"></i>
+                            <div class="w-10 h-5 bg-gray-300 dark:bg-gray-700 rounded-full relative">
+                                <div class="theme-slider absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform duration-300"></div>
+                            </div>
+                            <i class="fas fa-moon text-indigo-400"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden relative w-10 h-10 flex items-center justify-center" id="mobileMenuBtn">
+                    <div class="w-6 h-0.5 bg-primary transform transition-all duration-300" id="menuLine1"></div>
+                    <div class="absolute w-6 h-0.5 bg-secondary transform transition-all duration-300" id="menuLine2"></div>
+                    <div class="absolute w-6 h-0.5 bg-accent transform transition-all duration-300" id="menuLine3"></div>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+            <div class="container mx-auto px-4 md:px-8 py-20">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left Content -->
+                    <div class="space-y-8" data-aos="fade-right" data-aos-duration="1000">
+                        <div class="space-y-4">
+                            <div class="inline-block px-4 py-2 glass-card rounded-full text-sm font-medium">
+                                <span class="text-primary">👋 Hello, I'm</span>
+                            </div>
+                            <h1 class="text-5xl md:text-7xl font-bold font-space">
+                                <span class="gradient-text">Naseer Pasha</span>
+                            </h1>
+                            <div class="text-2xl md:text-3xl font-mono">
+                                <span id="typewriter" class="font-bold"></span>
+                                <span class="typewriter-cursor"></span>
+                            </div>
+                        </div>
+                        
+                        <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed">
+                            Crafting digital experiences with code, design, and passion. 
+                            Full-stack developer specializing in modern web technologies 
+                            and innovative solutions.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4">
+                            <button class="px-8 py-4 glass-card hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-rocket text-primary group-hover:rotate-12 transition-transform"></i>
+                                    <span class="font-semibold">Start Project</span>
+                                </div>
+                            </button>
+                            <button class="px-8 py-4 gradient-border hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                <div class="bg-white dark:bg-dark-bg rounded-lg px-6 py-3">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fas fa-download text-primary"></i>
+                                        <span class="font-semibold">Download CV</span>
+                                    </div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Right Content - 3D Profile -->
+                    <div class="relative" data-aos="fade-left" data-aos-duration="1000">
+                        <div class="relative w-96 h-96 mx-auto">
+                            <!-- 3D Profile Container -->
+                            <div class="absolute inset-0 card-3d">
+                                <div class="w-full h-full rounded-full gradient-border p-2">
+                                    <div class="w-full h-full rounded-full overflow-hidden bg-white dark:bg-dark-bg flex items-center justify-center">
+                                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=400&q=80" 
+                                             alt="Naseer Pasha" 
+                                             class="w-full h-full object-cover">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Orbiting Elements -->
+                            <div class="absolute -inset-4">
+                                <div class="absolute top-1/4 left-1/4 w-12 h-12 bg-primary/20 rounded-full animate-orbit"></div>
+                                <div class="absolute top-3/4 right-1/4 w-8 h-8 bg-secondary/20 rounded-full animate-orbit" style="animation-delay: -5s;"></div>
+                                <div class="absolute bottom-1/4 right-3/4 w-10 h-10 bg-accent/20 rounded-full animate-orbit" style="animation-delay: -10s;"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Stats Cards -->
+                        <div class="grid grid-cols-3 gap-4 mt-8">
+                            <div class="glass-card p-4 text-center">
+                                <div class="text-2xl font-bold text-primary">2+</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Years Exp</div>
+                            </div>
+                            <div class="glass-card p-4 text-center">
+                                <div class="text-2xl font-bold text-secondary">60+</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Projects</div>
+                            </div>
+                            <div class="glass-card p-4 text-center">
+                                <div class="text-2xl font-bold text-accent">0%</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">Satisfaction</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+                <div class="animate-bounce">
+                    <i class="fas fa-chevron-down text-2xl text-primary"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 relative">
+            <div class="absolute inset-0 grid-bg opacity-10"></div>
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold font-space mb-6">
+                        <span class="gradient-text">Tech Stack & Skills</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        Mastering the tools that bring ideas to life
+                    </p>
+                </div>
+
+                <!-- Tech Stack Carousel -->
+                <div class="relative overflow-hidden mb-16">
+                    <div class="flex space-x-8 animate-marquee hover:pause">
+                        <!-- Tech Icons -->
+                        <div class="flex space-x-8">
+                            <div class="tech-icon glass-card w-24 h-24 flex flex-col items-center justify-center">
+                                <i class="fab fa-react text-4xl text-cyan-500 mb-2"></i>
+                                <span class="text-sm font-medium">React</span>
+                            </div>
+                            <div class="tech-icon glass-card w-24 h-24 flex flex-col items-center justify-center">
+                                <i class="fab fa-node-js text-4xl text-green-500 mb-2"></i>
+                                <span class="text-sm font-medium">Node.js</span>
+                            </div>
+                            <div class="tech-icon glass-card w-24 h-24 flex flex-col items-center justify-center">
+                                <i class="fab fa-python text-4xl text-blue-500 mb-2"></i>
+                                <span class="text-sm font-medium">Python</span>
+                            </div>
+                            <div class="tech-icon glass-card w-24 h-24 flex flex-col items-center justify-center">
+                                <i class="fas fa-database text-4xl text-green-600 mb-2"></i>
+                                <span class="text-sm font-medium">MongoDB</span>
+                            </div>
+                            <div class="tech-icon glass-card w-24 h-24 flex flex-col items-center justify-center">
+                                <i class="fab fa-aws text-4xl text-orange-500 mb-2"></i>
+                                <span class="text-sm font-medium">AWS</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Skill Progress -->
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="glass-card p-8" data-aos="fade-right">
+                        <h3 class="text-2xl font-bold mb-6">Technical Skills</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>Frontend Development</span>
+                                    <span class="font-bold text-primary">85%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                            <!-- More skills... -->
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card p-8" data-aos="fade-left">
+                        <h3 class="text-2xl font-bold mb-6">Soft Skills</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span>Problem Solving</span>
+                                    <span class="font-bold text-success">90%</span>
+                                </div>
+                                <div class="h-2 bg-gray-200 dark:bg-gray-800 rounded-full overflow-hidden">
+                                    <div class="h-full bg-gradient-to-r from-success to-green-400 rounded-full" style="width: 90%;"></div>
+                                </div>
+                            </div>
+                            <!-- More skills... -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-gradient-to-b from-transparent to-gray-100 dark:to-gray-900">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <h2 class="text-4xl md:text-5xl font-bold font-space mb-6">
+                        <span class="gradient-text">Featured Projects</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
+                        Innovative solutions that solve real-world problems
+                    </p>
+                </div>
+
+                <!-- Projects Grid -->
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Project 1 - Interactive Card -->
+                    <div class="group relative" data-aos="fade-up">
+                        <div class="glass-card overflow-hidden h-full transform transition-all duration-500 group-hover:scale-105">
+                            <div class="relative h-48 overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=300&q=80" 
+                                     alt="E-Commerce Platform"
+                                     class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-3 py-1 bg-blue-500/10 text-blue-500 text-sm rounded-full">React</span>
+                                    <span class="px-3 py-1 bg-green-500/10 text-green-500 text-sm rounded-full">Node.js</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3">E-Commerce Platform</h3>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    Full-featured online shopping platform with payment integration.
+                                </p>
+                                <a href="#" class="inline-flex items-center text-primary font-semibold group-hover:underline">
+                                    View Details
+                                    <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-2 transition-transform"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- More projects... -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 relative">
+            <div class="container mx-auto px-4 md:px-8">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div data-aos="fade-right">
+                        <h2 class="text-4xl md:text-5xl font-bold font-space mb-6">
+                            <span class="gradient-text">Let's Connect</span>
+                        </h2>
+                        <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                            Have a project in mind? Let's turn your ideas into reality.
+                        </p>
+                        
+                        <!-- Contact Info -->
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                                    <i class="fas fa-envelope text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <div class="font-semibold">Email</div>
+                                    <div class="text-gray-600 dark:text-gray-400">n763122562@gmail.com</div>
+                                </div>
+                            </div>
+                            <!-- More contact info... -->
+                        </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="glass-card p-8" data-aos="fade-left">
+                        <form class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Name</label>
+                                <input type="text" 
+                                       class="w-full px-4 py-3 glass-card border border-transparent focus:border-primary outline-none rounded-lg transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Email</label>
+                                <input type="email" 
+                                       class="w-full px-4 py-3 glass-card border border-transparent focus:border-primary outline-none rounded-lg transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold mb-2">Message</label>
+                                <textarea rows="4" 
+                                          class="w-full px-4 py-3 glass-card border border-transparent focus:border-primary outline-none rounded-lg transition-all"></textarea>
+                            </div>
+                            <button type="submit" 
+                                    class="w-full px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white font-semibold rounded-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-2xl font-bold font-space gradient-text mb-4 md:mb-0">
+                    Naseer Pasha
+                </div>
+                <div class="flex space-x-6 mb-4 md:mb-0">
+                    <a href="https://github.com/Naseer-047" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:text-primary transition-all">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/naseer-pasha-56a080305/" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:text-primary transition-all">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://www.instagram.com/00_naseer_47?igsh=MTd1MDA0OHgzd2tmZQ==" class="w-10 h-10 glass-card rounded-full flex items-center justify-center hover:text-primary transition-all">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="text-center md:text-right">
+                    <div class="text-gray-600 dark:text-gray-400">
+                        © 2026 Naseer Pasha. All rights reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.0.0/tsparticles.bundle.min.js"></script>
+    
+    <!-- Combined JavaScript -->
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Loading Screen
+        const loadingScreen = document.getElementById('loadingScreen');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+        const themeSlider = document.querySelector('.theme-slider');
+        
+        // Check saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark');
+            themeSlider.style.transform = 'translateX(1.25rem)';
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark');
+            const isDark = body.classList.contains('dark');
+            themeSlider.style.transform = isDark ? 'translateX(1.25rem)' : 'translateX(0)';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Particles.js Configuration
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#6366f1" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: true },
+                size: { value: 3, random: true },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#8b5cf6",
+                    opacity: 0.4,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 2,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" }
+                }
+            }
+        });
+
+        // Typewriter Effect
+        const typewriter = document.getElementById('typewriter');
+        const texts = [
+            "Full-Stack Developer",
+            "UI/UX Designer",
+            "Problem Solver",
+            "Tech Innovator",
+            "Code Artist"
+        ];
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentText = texts[textIndex];
+            
+            if (isDeleting) {
+                typewriter.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriter.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let speed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentText.length) {
+                speed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                speed = 500;
+            }
+            
+            setTimeout(type, speed);
+        }
+
+        // Start typewriter after loading
+        setTimeout(type, 2000);
+
+        // Matrix Rain Effect
+        function createMatrixRain() {
+            const canvas = document.createElement('canvas');
+            canvas.classList.add('matrix-container');
+            canvas.id = 'matrixCanvas';
+            document.body.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            const chars = "01";
+            const charArray = chars.split("");
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = [];
+            
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+            
+            function draw() {
+                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                
+                ctx.fillStyle = "#0F0";
+                ctx.font = fontSize + "px monospace";
+                
+                for (let i = 0; i < drops.length; i++) {
+                    const text = charArray[Math.floor(Math.random() * charArray.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                    
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            
+            setInterval(draw, 33);
+        }
+
+        // Initialize on desktop only
+        if (window.innerWidth > 768) {
+            createMatrixRain();
+        }
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('glass-card');
+                navbar.classList.remove('bg-transparent');
+            } else {
+                navbar.classList.remove('glass-card');
+                navbar.classList.add('bg-transparent');
+            }
+        });
+
+        // Tech Icons Hover Effect
+        document.querySelectorAll('.tech-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', () => {
+                icon.style.transform = 'translateY(-10px) scale(1.1)';
+            });
+            
+            icon.addEventListener('mouseleave', () => {
+                icon.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Form Submission
+        const contactForm = document.querySelector('form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            });
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const menuLines = ['menuLine1', 'menuLine2', 'menuLine3'];
+        let menuOpen = false;
+
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            
+            if (menuOpen) {
+                document.getElementById('menuLine1').style.transform = 'rotate(45deg) translate(7px, 7px)';
+                document.getElementById('menuLine2').style.opacity = '0';
+                document.getElementById('menuLine3').style.transform = 'rotate(-45deg) translate(7px, -7px)';
+                
+                // Show mobile menu (you need to create this element)
+                const mobileMenu = document.createElement('div');
+                mobileMenu.id = 'mobileMenu';
+                mobileMenu.className = 'fixed inset-0 z-40 bg-white dark:bg-dark-bg flex flex-col items-center justify-center';
+                mobileMenu.innerHTML = `
+                    <button class="absolute top-6 right-6 text-2xl" id="closeMobileMenu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="space-y-8">
+                        <a href="#home" class="block text-3xl font-bold hover:text-primary transition-colors">Home</a>
+                        <a href="#about" class="block text-3xl font-bold hover:text-primary transition-colors">About</a>
+                        <a href="#skills" class="block text-3xl font-bold hover:text-primary transition-colors">Skills</a>
+                        <a href="#projects" class="block text-3xl font-bold hover:text-primary transition-colors">Projects</a>
+                        <a href="#contact" class="block text-3xl font-bold hover:text-primary transition-colors">Contact</a>
+                    </div>
+                `;
+                document.body.appendChild(mobileMenu);
+                
+                document.getElementById('closeMobileMenu').addEventListener('click', () => {
+                    mobileMenu.remove();
+                    menuOpen = false;
+                    document.getElementById('menuLine1').style.transform = 'none';
+                    document.getElementById('menuLine2').style.opacity = '1';
+                    document.getElementById('menuLine3').style.transform = 'none';
+                });
+            } else {
+                document.getElementById('menuLine1').style.transform = 'none';
+                document.getElementById('menuLine2').style.opacity = '1';
+                document.getElementById('menuLine3').style.transform = 'none';
+            }
+        });
+
+        // Custom Cursor
+        if (window.innerWidth > 768) {
+            const cursor = document.createElement('div');
+            cursor.className = 'fixed w-4 h-4 bg-primary rounded-full pointer-events-none z-50 mix-blend-difference transition-transform duration-150';
+            cursor.id = 'customCursor';
+            document.body.appendChild(cursor);
+            
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+            
+            document.querySelectorAll('a, button').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                });
+                
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('[data-aos]').forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>

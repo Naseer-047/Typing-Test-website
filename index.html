@@ -1,268 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NexType Pro | WebGL Typing Test</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body class="dark-mode">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="dark-mode">
     <!-- WebGL Background -->
     <div id="webgl-container"></div>
-    
+
     <!-- Floating decorative shapes -->
-    <div class="floating-shape w-64 h-64 bg-purple-500 top-10 left-10"></div>
-    <div class="floating-shape w-80 h-80 bg-cyan-500 bottom-10 right-10"></div>
-    
+    <div
+      class="floating-shape w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64 bg-purple-500 top-5 left-5 sm:top-10 sm:left-10"
+    ></div>
+    <div
+      class="floating-shape w-40 h-40 sm:w-60 sm:h-60 md:w-80 md:h-80 bg-cyan-500 bottom-5 right-5 sm:bottom-10 sm:right-10"
+    ></div>
+
     <!-- Result Modal -->
     <div id="result-modal" class="result-modal">
-        <div class="result-content">
-            <div class="text-center">
-                <div class="w-20 h-20 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-6">
-                    <i class="fas fa-trophy text-white text-3xl"></i>
-                </div>
-                <h2 class="text-3xl font-bold mb-2">Test Complete!</h2>
-                <p class="text-slate-500 dark:text-slate-400 mb-8">Here are your typing results</p>
-                
-                <div class="grid grid-cols-2 gap-6 mb-8">
-                    <div class="text-center p-4 rounded-xl bg-slate-100 dark:bg-slate-800">
-                        <div class="text-4xl font-bold text-blue-500 mb-1" id="result-wpm">0</div>
-                        <div class="text-slate-600 dark:text-slate-300 font-medium">WPM</div>
-                    </div>
-                    <div class="text-center p-4 rounded-xl bg-slate-100 dark:bg-slate-800">
-                        <div class="text-4xl font-bold text-green-500 mb-1" id="result-accuracy">100%</div>
-                        <div class="text-slate-600 dark:text-slate-300 font-medium">Accuracy</div>
-                    </div>
-                </div>
-                
-                <div class="flex items-center justify-center mb-8">
-                    <div class="text-center p-4 rounded-xl bg-slate-100 dark:bg-slate-800 mr-4">
-                        <div class="text-2xl font-bold text-red-500 mb-1" id="result-errors">0</div>
-                        <div class="text-slate-600 dark:text-slate-300 font-medium">Errors</div>
-                    </div>
-                    <div class="text-center p-4 rounded-xl bg-slate-100 dark:bg-slate-800">
-                        <div class="text-2xl font-bold text-purple-500 mb-1" id="result-time">60s</div>
-                        <div class="text-slate-600 dark:text-slate-300 font-medium">Time</div>
-                    </div>
-                </div>
-                
-                <div class="flex justify-center gap-4">
-                    <button id="close-modal" class="btn-secondary py-3 px-8 rounded-xl">Close</button>
-                    <button id="restart-from-modal" class="btn-primary py-3 px-8 rounded-xl">Try Again</button>
-                </div>
+      <div class="result-content">
+        <div class="text-center px-4 sm:px-6">
+          <div
+            class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-r from-green-400 to-blue-500 flex items-center justify-center mx-auto mb-4 sm:mb-6"
+          >
+            <i class="fas fa-trophy text-white text-2xl sm:text-3xl"></i>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold mb-2">Test Complete!</h2>
+          <p
+            class="text-slate-500 dark:text-slate-400 mb-6 sm:mb-8 text-sm sm:text-base"
+          >
+            Here are your typing results
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
+            <div
+              class="text-center p-3 sm:p-4 rounded-xl bg-slate-100 dark:bg-slate-800"
+            >
+              <div
+                class="text-3xl sm:text-4xl font-bold text-blue-500 mb-1"
+                id="result-wpm"
+              >
+                0
+              </div>
+              <div
+                class="text-slate-600 dark:text-slate-300 font-medium text-sm sm:text-base"
+              >
+                WPM
+              </div>
             </div>
+            <div
+              class="text-center p-3 sm:p-4 rounded-xl bg-slate-100 dark:bg-slate-800"
+            >
+              <div
+                class="text-3xl sm:text-4xl font-bold text-green-500 mb-1"
+                id="result-accuracy"
+              >
+                100%
+              </div>
+              <div
+                class="text-slate-600 dark:text-slate-300 font-medium text-sm sm:text-base"
+              >
+                Accuracy
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex items-center justify-center mb-6 sm:mb-8 gap-3 sm:gap-4"
+          >
+            <div
+              class="text-center p-3 sm:p-4 rounded-xl bg-slate-100 dark:bg-slate-800"
+            >
+              <div
+                class="text-xl sm:text-2xl font-bold text-red-500 mb-1"
+                id="result-errors"
+              >
+                0
+              </div>
+              <div
+                class="text-slate-600 dark:text-slate-300 font-medium text-sm sm:text-base"
+              >
+                Errors
+              </div>
+            </div>
+            <div
+              class="text-center p-3 sm:p-4 rounded-xl bg-slate-100 dark:bg-slate-800"
+            >
+              <div
+                class="text-xl sm:text-2xl font-bold text-purple-500 mb-1"
+                id="result-time"
+              >
+                60s
+              </div>
+              <div
+                class="text-slate-600 dark:text-slate-300 font-medium text-sm sm:text-base"
+              >
+                Time
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+            <button
+              id="close-modal"
+              class="btn-secondary py-2 sm:py-3 px-6 sm:px-8 rounded-xl text-sm sm:text-base w-full sm:w-auto"
+            >
+              Close
+            </button>
+            <button
+              id="restart-from-modal"
+              class="btn-primary py-2 sm:py-3 px-6 sm:px-8 rounded-xl text-sm sm:text-base w-full sm:w-auto"
+            >
+              Try Again
+            </button>
+          </div>
         </div>
-    </div>
-    
-    <div class="container max-w-6xl mx-auto z-10 px-4 py-8">
-        <!-- Header with theme toggle -->
-        <header class="flex flex-col md:flex-row justify-between items-center mb-10">
-            <div class="flex items-center mb-6 md:mb-0">
-                <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center mr-4">
-                    <i class="fas fa-keyboard text-white text-xl"></i>
-                </div>
-                <div>
-                    <h1 class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
-                        NexType Pro
-                    </h1>
-                    <p class="text-slate-500 dark:text-slate-400">WebGL Typing Speed & Accuracy Test</p>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-6">
-                <div class="flex items-center">
-                    <i class="fas fa-sun text-amber-500 mr-2"></i>
-                    <div id="mode-toggle" class="mode-toggle">
-                        <div class="absolute left-1 top-1 w-6 h-6 flex items-center justify-center">
-                            <i class="fas fa-moon text-white text-xs"></i>
-                        </div>
-                        <div class="absolute right-1 top-1 w-6 h-6 flex items-center justify-center">
-                            <i class="fas fa-sun text-white text-xs"></i>
-                        </div>
-                    </div>
-                    <i class="fas fa-moon text-indigo-400 ml-2"></i>
-                </div>
-                
-                <div class="hidden md:flex flex-col items-start">
-                    <span class="text-slate-500 dark:text-slate-400 text-sm mb-2">Difficulty:</span>
-                    <div class="text-selector">
-                        <div class="text-option active" data-difficulty="easy">Easy</div>
-                        <div class="text-option" data-difficulty="medium">Medium</div>
-                        <div class="text-option" data-difficulty="hard">Hard</div>
-                    </div>
-                </div>
-            </div>
-        </header>
-        
-        <!-- Stats Panel -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="flex justify-center items-center mb-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center">
-                        <i class="fas fa-bolt text-white"></i>
-                    </div>
-                </div>
-                <div class="text-3xl font-bold text-blue-500 mb-1" id="wpm">0</div>
-                <div class="text-slate-600 dark:text-slate-300 font-medium">WPM</div>
-                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Words Per Minute</div>
-            </div>
-            
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="flex justify-center items-center mb-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center">
-                        <i class="fas fa-bullseye text-white"></i>
-                    </div>
-                </div>
-                <div class="text-3xl font-bold text-green-500 mb-1" id="accuracy">100%</div>
-                <div class="text-slate-600 dark:text-slate-300 font-medium">Accuracy</div>
-                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Typing Accuracy</div>
-            </div>
-            
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="flex justify-center items-center mb-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center">
-                        <i class="fas fa-clock text-white"></i>
-                    </div>
-                </div>
-                <div class="text-3xl font-bold text-amber-500 mb-1" id="time">60s</div>
-                <div class="text-slate-600 dark:text-slate-300 font-medium">Time</div>
-                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Remaining</div>
-            </div>
-            
-            <div class="stat-card rounded-2xl p-6 text-center">
-                <div class="flex justify-center items-center mb-3">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-r from-red-400 to-pink-500 flex items-center justify-center">
-                        <i class="fas fa-exclamation-triangle text-white"></i>
-                    </div>
-                </div>
-                <div class="text-3xl font-bold text-red-500 mb-1" id="errors">0</div>
-                <div class="text-slate-600 dark:text-slate-300 font-medium">Errors</div>
-                <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">Mistakes</div>
-            </div>
-        </div>
-        
-        <!-- Progress Bar -->
-        <div class="mb-8">
-            <div class="flex justify-between text-sm text-slate-600 dark:text-slate-300 mb-3">
-                <span class="font-medium">Typing Progress</span>
-                <span id="progress-text" class="font-bold">0%</span>
-            </div>
-            <div class="progress-bar">
-                <div id="progress-fill" class="progress-fill bg-gradient-to-r from-cyan-500 to-purple-500" style="width: 0%"></div>
-            </div>
-        </div>
-        
-        <!-- Text Display -->
-        <div class="text-display rounded-2xl mb-8 relative overflow-hidden">
-            <!-- Decorative corner -->
-            <div class="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-indigo-500/10 to-purple-500/10 rounded-bl-full"></div>
-            
-            <!-- Difficulty badge -->
-            <div class="difficulty-badge" id="difficulty-badge">Medium</div>
-            
-            <!-- Fade effect at bottom -->
-            <div class="text-display-fade"></div>
-            
-            <div class="text-display-container p-6 md:p-8">
-                <div id="text-display" class="mono text-lg md:text-xl leading-relaxed">
-                    <!-- Text will be inserted here -->
-                </div>
-            </div>
-            
-            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-sm text-slate-500 dark:text-slate-400">
-                <span class="keyboard-hint mr-2"><i class="fas fa-mouse-pointer mr-1"></i>Click below to start</span>
-                <span class="keyboard-hint"><i class="fas fa-redo mr-1"></i>Tab to restart</span>
-            </div>
-        </div>
-        
-        <!-- Input Area -->
-        <div class="mb-10">
-            <div class="relative">
-                <textarea 
-                    id="typing-input" 
-                    class="w-full h-40 p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border-2 border-slate-200 dark:border-slate-700 text-xl mono text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/30 resize-none transition-all duration-300"
-                    placeholder="Start typing the text above here..."
-                    autofocus
-                    spellcheck="false"
-                ></textarea>
-                
-                <div class="absolute bottom-4 right-4 flex items-center text-slate-500 dark:text-slate-400">
-                    <i class="fas fa-font mr-2"></i>
-                    <span id="char-count" class="font-bold mr-4">0</span>
-                    <i class="fas fa-keyboard mr-2"></i>
-                    <span id="word-count" class="font-bold">0</span>
-                </div>
-            </div>
-            
-            <div class="flex flex-col md:flex-row justify-between items-center mt-6 gap-4">
-                <div class="flex items-center text-slate-600 dark:text-slate-300">
-                    <div class="w-10 h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-3">
-                        <i class="fas fa-lightbulb text-blue-500"></i>
-                    </div>
-                    <div>
-                        <div class="font-medium">Tip: Focus on accuracy first</div>
-                        <div class="text-sm text-slate-500 dark:text-slate-400">Speed will improve with practice</div>
-                    </div>
-                </div>
-                
-                <div class="flex gap-4">
-                    <button id="new-text-btn" class="btn-secondary py-3 px-6 rounded-xl">
-                        <i class="fas fa-sync-alt mr-2"></i>New Text
-                    </button>
-                    <button id="restart-btn" class="btn-primary py-3 px-8 rounded-xl">
-                        <i class="fas fa-play-circle mr-2"></i>Restart Test
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <footer class="mt-12 pt-8 border-t border-slate-200 dark:border-slate-800">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-lg font-bold mb-4 text-slate-800 dark:text-slate-100">
-                        <i class="fas fa-rocket text-indigo-500 mr-2"></i>About NexType
-                    </h3>
-                    <p class="text-slate-600 dark:text-slate-400">
-                        A modern typing test with WebGL visualizations, real-time analytics, and adaptive difficulty. Perfect for improving typing skills.
-                    </p>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4 text-slate-800 dark:text-slate-100">
-                        <i class="fas fa-chart-line text-green-500 mr-2"></i>How We Calculate
-                    </h3>
-                    <ul class="text-slate-600 dark:text-slate-400 space-y-2">
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i> WPM = (Words / Time) × 60</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i> Accuracy = (Correct / Total) × 100</li>
-                        <li class="flex items-center"><i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i> Word = 5 characters</li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-lg font-bold mb-4 text-slate-800 dark:text-slate-100">
-                        <i class="fas fa-code text-purple-500 mr-2"></i>Built With
-                    </h3>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-3 py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm font-medium">WebGL</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-sm font-medium">GSAP</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-sm font-medium">Tailwind</span>
-                        <span class="px-3 py-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-sm font-medium">Three.js</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="text-center mt-8 pt-6 border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-sm">
-                <p>© 2026 NexType Pro. Made with <i class="fas fa-heart text-red-500 mx-1"></i> for typing enthusiasts worldwide.</p>
-                <p class="mt-2">Press <kbd class="keyboard-hint mx-1">Tab</kbd> to restart test • <kbd class="keyboard-hint mx-1">Esc</kbd> to pause</p>
-            </div>
-        </footer>
+      </div>
     </div>
 
-  <script src="script.js"></script>
-</body>
+    <div
+      class="container max-w-6xl mx-auto z-10 px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 md:py-8"
+      style="text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)"
+    >
+      <!-- Header with theme toggle -->
+      <header
+        class="flex flex-col md:flex-row justify-between items-center mb-6 sm:mb-8 md:mb-10"
+      >
+        <div class="flex items-center mb-4 sm:mb-6 md:mb-0">
+          <div
+            class="w-12 h-12 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 flex items-center justify-center mr-4"
+          >
+            <i class="fas fa-keyboard text-white text-xl"></i>
+          </div>
+          <div>
+            <h1
+              class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent"
+            >
+              NexType Pro
+            </h1>
+            <p class="text-slate-500 dark:text-slate-400">
+              WebGL Typing Speed & Accuracy Test
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-6">
+          <div class="flex items-center">
+            <i class="fas fa-sun text-amber-500 mr-2"></i>
+            <div id="mode-toggle" class="mode-toggle">
+              <div
+                class="absolute left-1 top-1 w-6 h-6 flex items-center justify-center"
+              >
+                <i class="fas fa-moon text-white text-xs"></i>
+              </div>
+              <div
+                class="absolute right-1 top-1 w-6 h-6 flex items-center justify-center"
+              >
+                <i class="fas fa-sun text-white text-xs"></i>
+              </div>
+            </div>
+            <i class="fas fa-moon text-indigo-400 ml-2"></i>
+          </div>
+
+          <div class="hidden md:flex flex-col items-start">
+            <span class="text-slate-500 dark:text-slate-400 text-sm mb-2"
+              ></span
+            >
+            <div class="text-selector">
+              <div class="text-option active" data-difficulty="easy">Easy</div>
+              <div class="text-option" data-difficulty="medium">Medium</div>
+              <div class="text-option" data-difficulty="hard">Hard</div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- Stats Panel -->
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6 mb-6 sm:mb-8"
+      >
+        <div class="stat-card rounded-2xl p-6 text-center">
+          <div class="flex justify-center items-center mb-3">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center"
+            >
+              <i class="fas fa-bolt text-white"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold text-blue-500 mb-1" id="wpm">0</div>
+          <div class="text-slate-600 dark:text-slate-300 font-medium">WPM</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Words Per Minute
+          </div>
+        </div>
+
+        <div class="stat-card rounded-2xl p-6 text-center">
+          <div class="flex justify-center items-center mb-3">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center"
+            >
+              <i class="fas fa-bullseye text-white"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold text-green-500 mb-1" id="accuracy">
+            100%
+          </div>
+          <div class="text-slate-600 dark:text-slate-300 font-medium">
+            Accuracy
+          </div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Typing Accuracy
+          </div>
+        </div>
+
+        <div class="stat-card rounded-2xl p-6 text-center">
+          <div class="flex justify-center items-center mb-3">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 flex items-center justify-center"
+            >
+              <i class="fas fa-clock text-white"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold text-amber-500 mb-1" id="time">
+            60s
+          </div>
+          <div class="text-slate-600 dark:text-slate-300 font-medium">Time</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Remaining
+          </div>
+        </div>
+
+        <div class="stat-card rounded-2xl p-6 text-center">
+          <div class="flex justify-center items-center mb-3">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-r from-red-400 to-pink-500 flex items-center justify-center"
+            >
+              <i class="fas fa-exclamation-triangle text-white"></i>
+            </div>
+          </div>
+          <div class="text-3xl font-bold text-red-500 mb-1" id="errors">0</div>
+          <div class="text-slate-600 dark:text-slate-300 font-medium">
+            Errors
+          </div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Mistakes
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="mb-6 sm:mb-8">
+        <div
+          class="flex justify-between text-sm text-slate-600 dark:text-slate-300 mb-3"
+        >
+          <span class="font-medium">Typing Progress</span>
+          <span id="progress-text" class="font-bold">0%</span>
+        </div>
+        <div class="progress-bar">
+          <div
+            id="progress-fill"
+            class="progress-fill bg-gradient-to-r from-cyan-500 to-purple-500"
+            style="width: 0%"
+          ></div>
+        </div>
+      </div>
+
+      <!-- Text Display -->
+      <div
+        class="text-display rounded-2xl mb-6 sm:mb-8 relative overflow-hidden"
+      >
+        <!-- Decorative corner -->
+        <div
+          class="absolute top-0 right-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-bl from-indigo-500/10 to-purple-500/10 rounded-bl-full"
+        ></div>
+
+        <!-- Difficulty badge -->
+        <div class="difficulty-badge" id="difficulty-badge">Medium</div>
+
+        <!-- Fade effect at bottom -->
+        <div class="text-display-fade"></div>
+
+        <div class="text-display-container p-4 sm:p-6 md:p-8">
+          <div
+            id="text-display"
+            class="mono text-base sm:text-lg md:text-xl leading-relaxed"
+          >
+            <!-- Text will be inserted here -->
+          </div>
+        </div>
+
+        <div
+          class="absolute bottom-3 sm:bottom-4 left-1/2 transform -translate-x-1/2 text-xs sm:text-sm text-slate-500 dark:text-slate-400"
+        >
+          <span class="keyboard-hint mr-1 sm:mr-2"
+            ><i class="fas fa-mouse-pointer mr-1"></i>Click below to start</span
+          >
+          <span class="keyboard-hint"
+            ><i class="fas fa-redo mr-1"></i>Tab to restart</span
+          >
+        </div>
+      </div>
+
+      <!-- Input Area -->
+      <div class="mb-6 sm:mb-8 md:mb-10">
+        <div class="relative">
+          <textarea
+            id="typing-input"
+            class="w-full h-32 sm:h-36 md:h-40 p-4 sm:p-5 md:p-6 rounded-2xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-800 dark:to-slate-900 border-2 border-slate-200 dark:border-slate-700 text-lg sm:text-xl mono text-slate-800 dark:text-slate-100 focus:outline-none focus:border-indigo-400 focus:ring-4 focus:ring-indigo-100 dark:focus:ring-indigo-900/30 resize-none transition-all duration-300"
+            placeholder="Start typing the text above here..."
+            autofocus
+            spellcheck="false"
+          ></textarea>
+
+          <div
+            class="absolute bottom-3 sm:bottom-4 right-3 sm:right-4 flex items-center text-slate-500 dark:text-slate-400 text-sm"
+          >
+            <i class="fas fa-font mr-2"></i>
+            <span id="char-count" class="font-bold mr-3 sm:mr-4">0</span>
+            <i class="fas fa-keyboard mr-2"></i>
+            <span id="word-count" class="font-bold">0</span>
+          </div>
+        </div>
+
+        <div
+          class="flex flex-col md:flex-row justify-between items-center mt-4 sm:mt-6 gap-3 sm:gap-4"
+        >
+          <div
+            class="flex items-center text-slate-600 dark:text-slate-300 text-sm sm:text-base"
+          >
+            <div
+              class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center mr-2 sm:mr-3"
+            >
+              <i
+                class="fas fa-lightbulb text-blue-500 text-sm sm:text-base"
+              ></i>
+            </div>
+            <div>
+              <div class="font-medium">Tip: Focus on accuracy first</div>
+              <div
+                class="text-xs sm:text-sm text-slate-500 dark:text-slate-400"
+              >
+                Speed will improve with practice
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="flex flex-col sm:flex-row gap-2 sm:gap-4 w-full sm:w-auto"
+          >
+            <button
+              id="new-text-btn"
+              class="btn-secondary py-2 sm:py-3 px-4 sm:px-6 rounded-xl text-sm sm:text-base"
+            >
+              <i class="fas fa-sync-alt mr-2"></i>New Text
+            </button>
+            <button
+              id="restart-btn"
+              class="btn-primary py-2 sm:py-3 px-6 sm:px-8 rounded-xl text-sm sm:text-base"
+            >
+              <i class="fas fa-play-circle mr-2"></i>Restart Test
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer
+        class="mt-8 sm:mt-10 md:mt-12 pt-6 sm:pt-8 border-t border-slate-200 dark:border-slate-800"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          <div>
+            <h3
+              class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-slate-800 dark:text-slate-100"
+            >
+              <i class="fas fa-rocket text-indigo-500 mr-2"></i>About NexType
+            </h3>
+            <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+              A modern typing test with WebGL visualizations, real-time
+              analytics, and adaptive difficulty. Perfect for improving typing
+              skills.
+            </p>
+          </div>
+
+          <div>
+            <h3
+              class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-slate-800 dark:text-slate-100"
+            >
+              <i class="fas fa-chart-line text-green-500 mr-2"></i>How We
+              Calculate
+            </h3>
+            <ul
+              class="text-slate-600 dark:text-slate-400 space-y-2 text-sm sm:text-base"
+            >
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+                WPM = (Words / Time) × 60
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+                Accuracy = (Correct / Total) × 100
+              </li>
+              <li class="flex items-center">
+                <i class="fas fa-check-circle text-green-500 mr-2 text-xs"></i>
+                Word = 5 characters
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3
+              class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-slate-800 dark:text-slate-100"
+            >
+              <i class="fas fa-code text-purple-500 mr-2"></i>Built With
+            </h3>
+            <div class="flex flex-wrap gap-2 sm:gap-3">
+              <span
+                class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs sm:text-sm font-medium"
+                >WebGL</span
+              >
+              <span
+                class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 text-xs sm:text-sm font-medium"
+                >GSAP</span
+              >
+              <span
+                class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-300 text-xs sm:text-sm font-medium"
+                >Tailwind</span
+              >
+              <span
+                class="px-2 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-xs sm:text-sm font-medium"
+                >Three.js</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="text-center mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 text-xs sm:text-sm"
+        >
+          <p>
+            © 2026 NexType Pro. Made with
+            <i class="fas fa-heart text-red-500 mx-1"></i> for typing
+            enthusiasts worldwide.
+          </p>
+          <p class="mt-2">
+            Press <kbd class="keyboard-hint mx-1">Tab</kbd> to restart test •
+            <kbd class="keyboard-hint mx-1">Esc</kbd> to pause
+          </p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
 </html>
